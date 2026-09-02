@@ -63,6 +63,133 @@ Kontinuerlig miljöövervakning är därför en central del av den framtida prod
 
 ---
 
+# 🏗️ Föreslagen systemarkitektur
+
+Den övergripande arkitekturen bygger på följande flöde:
+
+```text
+┌───────────────────────┐
+│   Hydroponisk miljö   │
+│                       │
+│  🌡 Intern temperatur │
+│  🌡 Extern temperatur │
+│  💧 Vattentemperatur  │
+│  💦 Luftfuktighet     │
+└───────────┬───────────┘
+            │
+            │ Sensorvärden
+            ▼
+┌───────────────────────────┐
+│     Embedded-enhet        │
+│                           │
+│  Sensor drivers           │
+│  Measurement scheduler    │
+│  Data validation          │
+│  Data processing          │
+│  Communication            │
+└────────────┬──────────────┘
+             │
+             │ IoT-kommunikation
+             ▼
+┌───────────────────────────┐
+│     Externt system        │
+│                           │
+│ MQTT broker / API /       │
+│ Gateway / Server          │
+└────────────┬──────────────┘
+             │
+             ▼
+┌───────────────────────────┐
+│   Framtida molntjänst     │
+│                           │
+│ Historiska mätvärden      │
+│ Analys                    │
+│ Notifieringar             │
+└───────────────────────────┘
+```
+
+Den slutliga kommunikationslösningen fastställs efter teknisk utvärdering.
+
+---
+
+# 📁 Repositorystruktur
+
+En möjlig struktur:
+
+```text
+MicroHydros/
+│
+├── README.md
+│
+├── firmware/
+│   ├── src/
+│   ├── include/
+│   ├── lib/
+│   └── platformio.ini
+│
+├── docs/
+│   ├── project-plan.md
+│   ├── requirements.md
+│   ├── architecture.md
+│   ├── sensor-selection.md
+│   ├── communication.md
+│   ├── testing.md
+│   ├── risks.md
+│   └── decisions/
+│
+├── tests/
+│   ├── unit/
+│   └── integration/
+│
+├── diagrams/
+│   └── architecture.png
+│
+└── .github/
+    └── workflows/
+        └── ci.yml
+```
+
+Den slutliga strukturen kan anpassas efter den hårdvara och kommunikationslösning som väljs.
+
+---
+
+# 📚 Teknisk dokumentation
+
+| Dokument                   | Beskrivning                             |
+| -------------------------- | --------------------------------------- |
+| `docs/project-plan.md`     | Projektplan och tidsplan                |
+| `docs/requirements.md`     | Funktionella och icke-funktionella krav |
+| `docs/architecture.md`     | Systemarkitektur                        |
+| `docs/sensor-selection.md` | Sensorresearch och sensorval            |
+| `docs/communication.md`    | Kommunikationslösning                   |
+| `docs/testing.md`          | Teststrategi och testresultat           |
+| `docs/risks.md`            | Risker och begränsningar                |
+| `docs/decisions/`          | Tekniska beslut och motiveringar        |
+
+---
+
+# 🔧 Teknikområden
+
+Projektet fokuserar på:
+
+* **Embedded Systems**
+* **IoT**
+* **Sensorintegration**
+* **C/C++**
+* **Mikrokontroller**
+* **Datainsamling**
+* **Data validation**
+* **MQTT / HTTP**
+* **Wi-Fi**
+* **Git & GitHub**
+* **Jira**
+* **Confluence**
+* **Agile / Scrum**
+* **Testning**
+* **Systemarkitektur**
+
+---
+
 # 🚫 Sensorbegränsning
 
 Den tidigare prototypen använde sensorer ur familjerna **DHT11 och DHT22**.
@@ -157,54 +284,8 @@ Projektets utveckling ska kunna följas genom Git, issues, pull requests och dok
 
 ---
 
-# 🏗️ Föreslagen systemarkitektur
 
-Den övergripande arkitekturen bygger på följande flöde:
 
-```text
-┌───────────────────────┐
-│   Hydroponisk miljö   │
-│                       │
-│  🌡 Intern temperatur │
-│  🌡 Extern temperatur │
-│  💧 Vattentemperatur  │
-│  💦 Luftfuktighet     │
-└───────────┬───────────┘
-            │
-            │ Sensorvärden
-            ▼
-┌───────────────────────────┐
-│     Embedded-enhet        │
-│                           │
-│  Sensor drivers           │
-│  Measurement scheduler    │
-│  Data validation          │
-│  Data processing          │
-│  Communication            │
-└────────────┬──────────────┘
-             │
-             │ IoT-kommunikation
-             ▼
-┌───────────────────────────┐
-│     Externt system        │
-│                           │
-│ MQTT broker / API /       │
-│ Gateway / Server          │
-└────────────┬──────────────┘
-             │
-             ▼
-┌───────────────────────────┐
-│   Framtida molntjänst     │
-│                           │
-│ Historiska mätvärden      │
-│ Analys                    │
-│ Notifieringar             │
-└───────────────────────────┘
-```
-
-Den slutliga kommunikationslösningen fastställs efter teknisk utvärdering.
-
----
 
 # 🔬 Sensor Research
 
@@ -608,83 +689,6 @@ En funktion betraktas som klar när:
 
 ---
 
-# 📁 Repositorystruktur
-
-En möjlig struktur:
-
-```text
-MicroHydros/
-│
-├── README.md
-│
-├── firmware/
-│   ├── src/
-│   ├── include/
-│   ├── lib/
-│   └── platformio.ini
-│
-├── docs/
-│   ├── project-plan.md
-│   ├── requirements.md
-│   ├── architecture.md
-│   ├── sensor-selection.md
-│   ├── communication.md
-│   ├── testing.md
-│   ├── risks.md
-│   └── decisions/
-│
-├── tests/
-│   ├── unit/
-│   └── integration/
-│
-├── diagrams/
-│   └── architecture.png
-│
-└── .github/
-    └── workflows/
-        └── ci.yml
-```
-
-Den slutliga strukturen kan anpassas efter den hårdvara och kommunikationslösning som väljs.
-
----
-
-# 📚 Teknisk dokumentation
-
-| Dokument                   | Beskrivning                             |
-| -------------------------- | --------------------------------------- |
-| `docs/project-plan.md`     | Projektplan och tidsplan                |
-| `docs/requirements.md`     | Funktionella och icke-funktionella krav |
-| `docs/architecture.md`     | Systemarkitektur                        |
-| `docs/sensor-selection.md` | Sensorresearch och sensorval            |
-| `docs/communication.md`    | Kommunikationslösning                   |
-| `docs/testing.md`          | Teststrategi och testresultat           |
-| `docs/risks.md`            | Risker och begränsningar                |
-| `docs/decisions/`          | Tekniska beslut och motiveringar        |
-
----
-
-# 🔧 Teknikområden
-
-Projektet fokuserar på:
-
-* **Embedded Systems**
-* **IoT**
-* **Sensorintegration**
-* **C/C++**
-* **Mikrokontroller**
-* **Datainsamling**
-* **Data validation**
-* **MQTT / HTTP**
-* **Wi-Fi**
-* **Git & GitHub**
-* **Jira**
-* **Confluence**
-* **Agile / Scrum**
-* **Testning**
-* **Systemarkitektur**
-
----
 
 # 👥 Team
 
