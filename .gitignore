@@ -1,0 +1,28 @@
+# ESP-IDF Build output
+build/
+bootloader/
+partition_table/
+*.bin
+*.elf
+*.map
+flasher_args.json
+wokwi_flasher_args.json
+
+# School reference docs & offline reports (handled outside Git)
+skolmaterial_och_rapporter/
+
+# ESP-IDF Config backups
+sdkconfig.old
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+
+# OS temporary files
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
