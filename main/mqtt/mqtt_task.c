@@ -1,21 +1,21 @@
-#include "network_task.h"
+#include "mqtt_task.h"
 #include "wifi_manager.h"
 #include "mqtt_client.h"
-#include "json_payload.h"
+#include "json_serializer.h"
 #include "sensor_types.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-static const char *TAG = "NETWORK_TASK";
+static const char *TAG = "MQTT_TASK";
 
-void network_task(void *pvParameters) {
-    ESP_LOGI(TAG, "NetworkTask startad på FreeRTOS Core %d (Prioritet: 1)", xPortGetCoreID());
+void mqtt_task(void *pvParameters) {
+    ESP_LOGI(TAG, "MQTT Task startad på FreeRTOS Core %d (Prioritet: 1)", xPortGetCoreID());
 
-    // 1. Initialisera Wi-Fi (Ansvar: IoT Engineer)
+    // 1. Initialisera Wi-Fi
     wifi_manager_init();
 
-    // 2. Starta MQTT (Ansvar: IoT Engineer)
+    // 2. Starta MQTT
     mqtt_client_module_start();
 
     sensor_telemetry_t received_data;
@@ -26,7 +26,7 @@ void network_task(void *pvParameters) {
         if (s_sensor_queue != NULL && xQueueReceive(s_sensor_queue, &received_data, portMAX_DELAY) == pdPASS) {
             if (serialize_telemetry_json(&received_data, payload_buffer, sizeof(payload_buffer))) {
                 ESP_LOGI(TAG, "Mottog paket från SensorTask: %s", payload_buffer);
-                mqtt_client_module_publish("hydrogreen/microhydros/telemetry", payload_buffer);
+                mqtt_client_module_publish(MQTT_TOPIC_TELEMETRY, payload_buffer);
             }
         }
     }
