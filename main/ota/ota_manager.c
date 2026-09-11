@@ -3,6 +3,7 @@
 #include "esp_ota_ops.h"
 
 static const char *TAG = "OTA_MANAGER";
+static const esp_partition_t *update_partition = NULL;
 
 esp_err_t ota_manager_init(void) {
     const esp_partition_t *running = esp_ota_get_running_partition();
