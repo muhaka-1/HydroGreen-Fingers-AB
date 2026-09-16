@@ -68,7 +68,7 @@ void app_main(void) {
     // 5. Kör automatiserade självtester vid boot (Simon)
     run_system_self_tests();
 
-    // 6. Starta SensorTask på FreeRTOS Core 1 (Malek Chahin)
+    /*// 6. Starta SensorTask på FreeRTOS Core 1 (Malek Chahin)
     xTaskCreatePinnedToCore(
         sensor_task,
         "sensor_task",
@@ -78,8 +78,8 @@ void app_main(void) {
         NULL,
         1  // Core 1
     );
-    ESP_LOGI(TAG, "[Core 1] SensorTask startad (Ansvar: Malek Chahin)");
-
+    ESP_LOGI(TAG, "[Core 1] SensorTask startad (Ansvar: Malek Chahin)");*/
+    
     // 7. Starta MQTT Task på FreeRTOS Core 0 (Mohammad)
     xTaskCreatePinnedToCore(
         mqtt_task,
@@ -92,7 +92,7 @@ void app_main(void) {
     );
     ESP_LOGI(TAG, "[Core 0] MQTT Task startad (Ansvar: Mohammad)");
 
-    // 8. Starta Webserver Task på FreeRTOS Core 0 (Emil)
+    /*// 8. Starta Webserver Task på FreeRTOS Core 0 (Emil)
     xTaskCreatePinnedToCore(
         webserver_task,
         "webserver_task",
@@ -104,5 +104,5 @@ void app_main(void) {
     );
     ESP_LOGI(TAG, "[Core 0] Webserver Task startad (Ansvar: Emil)");
 
-    ESP_LOGI(TAG, "MicroHydros systemet körs med alla 5 moduler aktiva!");
+    ESP_LOGI(TAG, "MicroHydros systemet körs med alla 5 moduler aktiva!");*/
 }
