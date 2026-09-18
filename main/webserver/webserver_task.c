@@ -14,13 +14,15 @@ void webserver_task(void *pvParameters) {
 
     // Starta den inbyggda webbservern
     httpd_handle_t server = start_webserver();
+    if (server == NULL) {
+        ESP_LOGE(TAG, "Webserver kunte inte startas, avslutar task");
+        vTaskDelete(NULL);
+        return;
+    }
 
     while (1) {
         // Håll liv i tasken och hantera eventuell diagnostik
         vTaskDelay(pdMS_TO_TICKS(5000));
     }
 
-    if (server) {
-        stop_webserver(server);
-    }
 }
