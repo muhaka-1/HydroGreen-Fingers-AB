@@ -34,4 +34,8 @@ idf_component_register(
         esp_event
         esp_http_server
         app_update
+        mqtt
+        esp_wifi
+        esp_netif
+        json
 )

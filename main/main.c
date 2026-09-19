@@ -79,7 +79,7 @@ void app_main(void) {
         1  // Core 1
     );
     ESP_LOGI(TAG, "[Core 1] SensorTask startad (Ansvar: Malek Chahin)");
-
+    
     // 7. Starta MQTT Task på FreeRTOS Core 0 (Mohammad)
     xTaskCreatePinnedToCore(
         mqtt_task,

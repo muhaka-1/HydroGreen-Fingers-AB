@@ -55,8 +55,8 @@ void sensor_task(void *pvParameters) {
         // 5. Skriv ut diagnostik direkt till serieporten
         ESP_LOGI(TAG, "[Mätning] Inne: %.1f°C (%.1f%% RH) | Vatten: %.1f°C | Ute: %.1f°C | Larm: %s",
                  data.temp_inside_c, data.humidity_inside_pct, data.temp_water_c, data.temp_outside_c, data.alarm_code);
-        esp_rom_printf("[SENSOR_TASK] Inne: %.1f C (%.1f%% RH) | Vatten: %.1f C | Ute: %.1f C | Larm: %s\r\n",
-                       data.temp_inside_c, data.humidity_inside_pct, data.temp_water_c, data.temp_outside_c, data.alarm_code);
+        /*esp_rom_printf("[SENSOR_TASK] Inne: %.1f C (%.1f%% RH) | Vatten: %.1f C | Ute: %.1f C | Larm: %s\r\n",
+                       data.temp_inside_c, data.humidity_inside_pct, data.temp_water_c, data.temp_outside_c, data.alarm_code);*/
 
         // 6. Skicka telemetripaket till FreeRTOS-kön (för network_task)
         if (s_sensor_queue != NULL) {
