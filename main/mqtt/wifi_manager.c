@@ -222,14 +222,10 @@ esp_err_t wifi_manager_init(void)
     wifi_config_t wifi_config = {
         .sta = {
             .ssid = WIFI_SSID_DEFAULT,
+            .password = WIFI_PASS_DEFAULT,
+            .threshold.authmode = WIFI_AUTH_WPA2_PSK,
         },
     };
-
-    strlcpy(
-        (char *)wifi_config.sta.password,
-        WIFI_PASS_DEFAULT,
-        sizeof(wifi_config.sta.password)
-    );
 
     err = esp_wifi_set_mode(WIFI_MODE_STA);
 

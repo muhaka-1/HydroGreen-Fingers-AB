@@ -37,4 +37,5 @@ idf_component_register(
         mqtt
         esp_wifi
         esp_netif
+        json
 )
