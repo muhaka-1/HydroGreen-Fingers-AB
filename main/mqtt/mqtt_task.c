@@ -1,3 +1,4 @@
+#include "ota_manager.h"
 #include "mqtt_task.h"
 #include "wifi_manager.h"
 #include "hydro_mqtt_client.h"
@@ -118,7 +119,7 @@ void mqtt_task(void *pvParameters)
         // --------------------------------------------------------
         // Kontrollera MQTT-anslutning
         // --------------------------------------------------------
-
+        ota_manager_mark_valid();
         if (!mqtt_client_module_is_connected())
         {
             ESP_LOGW(

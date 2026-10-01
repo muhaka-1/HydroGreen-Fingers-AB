@@ -1,5 +1,7 @@
+#include <stdio.h>
+#include "esp_mac.h"
 #include "hydro_mqtt_client.h"
-
+#include "ota_manager.h"
 #include <mqtt_client.h>
 #include "esp_log.h"
 #include "esp_event.h"
@@ -256,16 +258,18 @@ static void mqtt_event_handler(
 
 esp_err_t mqtt_client_module_start(void)
 {
-    ESP_LOGI(
-        TAG,
-        "MQTT Klient ansluter till %s",
-        MQTT_BROKER_URI
-    );
+       uint8_t mac[6];
+    esp_read_mac(mac, ESP_MAC_WIFI_STA);
+    static char client_id[40];
+    snprintf(client_id, sizeof(client_id), "%s-%02x%02x%02x",
+             MQTT_CLIENT_ID, mac[3], mac[4], mac[5]);
+    ESP_LOGI(TAG, "MQTT client ID: %s", client_id);
 
     esp_mqtt_client_config_t mqtt_cfg = {
-    .broker.address.uri = MQTT_BROKER_URI,
-    .credentials.client_id = MQTT_CLIENT_ID,
+        .broker.address.uri = MQTT_BROKER_URI,
+        .credentials.client_id = client_id,
     };
+    
 
     s_mqtt_client = esp_mqtt_client_init(&mqtt_cfg);
 
