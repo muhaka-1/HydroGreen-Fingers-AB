@@ -14,15 +14,8 @@ Projektet genomförs inom utbildningen **IoT- och embeddedutvecklare** vid JENSE
 
 ## 📋 Projektöversikt
 
-| Information       | Detalj                         |
-| ----------------- | ------------------------------ |
-| **Projekt**       | MicroHydros                    |
-| **Kund**          | HydroGreen Fingers AB          |
-| **Projektperiod** | 31 augusti – 25 september 2026 |
-| **Omfattning**    | 20 YH-poäng                    |
-| **Projektform**   | Teamprojekt                    |
-| **Område**        | IoT / Embedded Systems         |
-| **Status**        | 🚧 Under utveckling            |
+<img width="1535" height="1024" alt="image" src="https://github.com/user-attachments/assets/ca23d6b2-a0ff-40e2-873b-c70fe2db8aae" />
+
 
 ---
 
@@ -66,6 +59,9 @@ Kontinuerlig miljöövervakning är därför en central del av den framtida prod
 # 🏗️ Föreslagen systemarkitektur
 
 Den övergripande arkitekturen bygger på följande flöde:
+
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/90ad2720-bd5e-4bfc-889e-ab865997ebf0" />
+
 
 ```text
 ┌───────────────────────┐
